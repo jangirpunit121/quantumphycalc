@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quantum Physics Calculator</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #101827;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .container {
+            background: #1e293b;
+            padding: 30px;
+            max-width: 480px;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #38bdf8;
+        }
+
+        .formula {
+            background: #334155;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            background: #06b6d4;
+            color: white;
+            padding: 13px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #0891b2;
+        }
+
+        .result {
+            background: #064e3b;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .result h3 {
+            color: #4ade80;
+            font-size: 22px;
+        }
+
+        sup {
+            font-size: 65%;
+        }
+
+        .error {
+            background: #7f1d1d;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .info {
+            color: #cbd5e1;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 25px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Quantum Physics Calculator</h1>
+
+        <p>Particle in a One-Dimensional Box</p>
+
+        <div class="formula">
+
+            E<sub>n</sub> =
+            n<sup>2</sup>h<sup>2</sup> / 8mL<sup>2</sup>
+
+        </div>
+
+        <form method="POST">
+
+            <input
+                type="number"
+                name="n"
+                placeholder="Quantum Number (n)"
+                min="1"
+                step="1"
+                required
+            >
+
+            <input
+                type="number"
+                name="mass"
+                placeholder="Mass (kg)"
+                min="0"
+                step="any"
+                required
+            >
+
+            <input
+                type="number"
+                name="length"
+                placeholder="Box Length (meters)"
+                min="0"
+                step="any"
+                required
+            >
+
+            <button type="submit">
+                Calculate Energy
+            </button>
+
+        </form>
+
+
+        {% if result is not none %}
+
+        <div class="result">
+
+            <h2>Calculation Result</h2>
+
+            <p>Energy in Joules:</p>
+
+            <h3>
+                {{ result }} × 10<sup>{{ result_power }}</sup> J
+            </h3>
+
+            <hr>
+
+            <p>Energy in Electron Volts:</p>
+
+            <h3>
+                {{ ev }} × 10<sup>{{ ev_power }}</sup> eV
+            </h3>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <div class="info">
+
+            <p>Planck's Constant:</p>
+
+            <p>
+                h = 6.62607015 × 10<sup>-34</sup> J·s
+            </p>
+
+            <p>Elementary Charge:</p>
+
+            <p>
+                e = 1.602176634 × 10<sup>-19</sup> C
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
